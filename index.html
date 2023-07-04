@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+    <link rel="manifest" href="manifest.json">
 <head>
     <meta charset="UTF-8" />
     <title>nmとeVの変換サイト</title>
@@ -66,6 +67,15 @@ p {
     <p class="calculation-note">1239.842を入力値で割っています。</p>
 
     <script>
+          if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/color-name/sw.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
         function divideBy1240(numberId) {
             var number = document.getElementById(numberId).value;
             var result = 1239.842 / number;
